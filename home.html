@@ -67,12 +67,20 @@
     font-size: 0.9rem;
     color: #333;
 }
-
+.sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            
+        }
+.scroll{
+    height: 2000px;
+}
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light p-3 bgcolor">
+    <header class="sticky-header">
+        <nav class="navbar navbar-expand-lg navbar-light p-3  bgcolor ">
             <div class="container-fluid">
                 
                 <a class="navbar-brand" href="">Museum Name</a>
@@ -152,6 +160,7 @@
             </div>
         </div>
     </footer>
+    <div class="scroll"></div>
     
     
     
