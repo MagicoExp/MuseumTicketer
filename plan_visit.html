@@ -173,13 +173,51 @@ margin-right: 15%;
      .ticket p{
 color:white ;
      }
-.price{
-    color: white;
-    width: 600px;
-    height: 400px;
-    text-align: center;
-    
-}
+     .price {
+        margin-top: -75px;
+        margin-left: 46%;
+       height: 400px;
+       width: 600px;
+        }
+
+     
+        .lists {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        
+        .price h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+      
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+      
+        .label {
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Price styling */
+        .price-value {
+            margin-top: -10px;
+            color:white;
+            text-align: right;
+        }
     </style>
 
 </head>
@@ -259,27 +297,31 @@ Last entry 1 hour before closure. Visitors will be asked to vacate the exhibitio
     </P>
  </div>
  <div class="price">
-    <li class=" lists list style type:none">
-        <ul class="">
-           <h2>WEEKDAYS</h2>
-           <span>Adult</span>
-           <p>400</p>
-           <ul class="">
-            <span>Children</span>
-            <p>250</p>
-           </ul>
-        </ul>
-        <ul class="" >
-          <h2>WEEKEND</h2>
-          <span>Adult</span>
-          <p>400</p>
-          <ul class="">
-           <span>Children</span>
-           <p>250</p>
-          </ul>
-           </ul>
-    </li>
- </div>
+    <ul class="lists">
+        <li>
+            <h2>WEEKDAYS</h2>
+            <div class="row ">
+                <span class="label">Adult</span>
+                <span class="price-value">400</span>
+            </div>
+            <div class="row">
+                <span class="label">Children</span>
+                <span class="price-value">250</span>
+            </div>
+        </li>
+        <li>
+            <h2>WEEKEND</h2>
+            <div class="row">
+                <span class="label">Adult</span>
+                <span class="price-value">400</span>
+            </div>
+            <div class="row">
+                <span class="label">Children</span>
+                <span class="price-value">250</span>
+            </div>
+        </li>
+    </ul>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
