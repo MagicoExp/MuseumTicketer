@@ -39,7 +39,7 @@
                         transition: 1.5s; */
                         border-bottom: 2px solid white;
                     }
-                    .background{
+                    .html,body{
                         background: linear-gradient(45deg,#071019, #071019, #071019,#011f3d,rgb(8, 8, 121), rgb(12, 126, 146),#071019,#071019,#071019,#071019);
             
             }
@@ -138,7 +138,7 @@ p{
             
 }
 .container{
-margin-top: 8%;
+    margin-top: 8%;
 margin-right: 15%;
     width: 600px;
     height: 400px;  
@@ -161,16 +161,29 @@ margin-right: 15%;
             color:whitesmoke;
             margin: 5px 0;
         }
-        
+       
       .lists{
         list-style: none;
       }
-     
+      .ticket{
+       margin-left:  5%;
+        width: 400px;
+        height: 100px;
+      }
+     .ticket p{
+color:white ;
+     }
+.price{
+    color: white;
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    
+}
     </style>
 
 </head>
 <body>
-    <div class="background">
     <div class="name">Magico </div>
     <header class="sticky-header">
         <nav class="navbar navbar-expand-lg navbar-light p-3  bgcolor ">
@@ -190,7 +203,7 @@ margin-right: 15%;
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="home.html">Home</a>
+                            <a class="nav-link" href="">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Exhibitions & Events</a>
@@ -219,17 +232,12 @@ margin-right: 15%;
         The museum is open daily except Tuesdays.
 Last entry 1 hour before closure. Visitors will be asked to vacate the exhibition rooms 30 minutes before closure.
     </P>
-    <div>
-     <h3>TICKET PRICES</h3>
-        <P>
-            Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
-        </P>
-     </div>
+    
  </div>
  <div class="container">
     <li class=" lists list style type:none">
         <ul class="content">
-            <span class="active-dot"></span>
+            
            <h2>The museum is open today from 9:00 AM to 9:00 PM</h2>
         </ul>
         <ul class="content">
@@ -243,8 +251,35 @@ Last entry 1 hour before closure. Visitors will be asked to vacate the exhibitio
 </ul>
     </li>
  </div>
-</div>
- 
+
+ <div class="ticket">
+    <h3>TICKET PRICES</h3>
+    <P>
+        Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
+    </P>
+ </div>
+ <div class="price">
+    <li class=" lists list style type:none">
+        <ul class="">
+           <h2>WEEKDAYS</h2>
+           <span>Adult</span>
+           <p>400</p>
+           <ul class="">
+            <span>Children</span>
+            <p>250</p>
+           </ul>
+        </ul>
+        <ul class="" >
+          <h2>WEEKEND</h2>
+          <span>Adult</span>
+          <p>400</p>
+          <ul class="">
+           <span>Children</span>
+           <p>250</p>
+          </ul>
+           </ul>
+    </li>
+ </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
