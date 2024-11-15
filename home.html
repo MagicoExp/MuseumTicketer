@@ -39,6 +39,29 @@
     text-decoration: none;
     color: white;
 }
+.book-ticket {
+    position: absolute;
+    bottom: 60%;
+    left: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.book-ticket h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.book-ticket p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
     </style>
 </head>
 <body>
@@ -79,6 +102,16 @@
         </nav>
     </header>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="book-ticket p-4 text-center">
+            <h5>WELCOME TO THE MUSEUM</h5>
+            <p class="mb-2">The museum is open today</p>
+            <p><strong>9:00 AM → 9:00 PM</strong></p>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+                <a href="" class="btn btn-success">Book a Ticket</a>
+                <a href="" class="btn btn-outline-secondary">Prepare Your Visit</a>
+            </div>
+        </div>
+        
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100 img-fluid" src="/images/3.jpg" alt="First slide">
