@@ -127,10 +127,38 @@ background-color: black;
                             <a class="nav-link" href="">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Sign Up</a>
+                            <a class="nav-link profile" href="">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link log-in" href="">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sign-up" href="">Sign Up</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <script>
+        let loginBtn = document.querySelector('.log-in');
+        let signBtn = document.querySelector('.sign-up');
+        let profile = document.querySelector('.profile');
+        var loginCheck = 'false'; //login nahi kela ahe
+
+        if (loginCheck === 'false'){
+            loginBtn.innerHTML = 'Log Out';
+            loginBtn.href = '/logout';
+            signBtn.style.display = 'none';
+        } else {
+            loginBtn.innerHTML = 'Log In';
+            loginBtn.href = '/login';
+            signBtn.style.display = 'block';
+            profile.style.display = 'none';
+
+
+        } 
+            
+        
+
+    </script>
