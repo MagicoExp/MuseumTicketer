@@ -5,106 +5,289 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Your Visit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <style>
-.col{
-    color: aquamarine;
-    margin-top: 20px;
-}
+        
 
-.container{
-    margin-top: auto;
-}
-.container h5{
+.bgcolor {
+            
+            /* background: linear-gradient(45deg,#071019, #071019, #071019,#011f3d,rgb(8, 8, 121), rgb(12, 126, 146),#071019,#071019,#071019,#071019); */
+            background-color: black;
+                        
+                        
+                    }
+                    .navbar-brand{
+                        color: azure;
+                        font-family:' 400 14px / 1.57 Roboto, Open Sans, Arial, Helvetica, sans-serif';
+                        
+                    }
+                    .navbar-brand:hover {
+                        color:white;
+                        border-bottom: 2px solid white;
+                    }
+                    .nav-link {
+                        color:white ;
+                        border-radius: 2px;
+                        margin: 0 5px;
+                        font-size: 1.2rem;
+                        font-family:'400 14px / 1.57 Roboto, Open Sans, Arial, Helvetica, sans-serif';
+                        
+                    }
+                    
+                    .nav-link:hover {
+                        color:white;
+                        /* background-color: #426c94; */
+                        /* border-radius: 25px;
+                        transition: 1.5s; */
+                        border-bottom: 2px solid white;
+                    }
+                    .html,body{
+                        background: linear-gradient(45deg,#071019, #071019, #071019,#011f3d,rgb(8, 8, 121), rgb(12, 126, 146),#071019,#071019,#071019,#071019);
+            
+            }
+            .class{
+             
+                width: 175px;
+            }
+            .font{
+                font-family: '400 14px / 1.57 Roboto, Open Sans, Arial, Helvetica, sans-serif';
+                text-decoration: none;
+            }
+            .link{
+                text-decoration: none;
+                color: white;
+            }
+            .book-ticket {
+                position: absolute;
+                bottom: 60%;
+                left: 20px;
+                width: 300px;
+                background-color: #fff;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                z-index: 1000;
+            }
+            
+            .book-ticket h5 {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #000;
+            }
+            
+            .book-ticket p {
+                margin: 0;
+                font-size: 0.9rem;
+                color: #333;
+            }
+            .sticky-header {
+                        position: sticky;
+                        top: 0;
+                        z-index: 1000;
+                        
+                    }
+            .scroll{
+                height: 2000px;
+            }
+            .carousel-item img {
+                height: 650px;
+            }
+            .name {
+                        color: white;
+                        background-color: black;
+                        font-size: 2rem;
+                        text-align: center;
+                        font-family:'400 14px / 1.57 Roboto, Open Sans, Arial, Helvetica, sans-serif';
+                        padding: 10px 0;
+                        padding-top: 22px;
+                        padding-bottom: 20px;
+                        margin: 0; 
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                        letter-spacing: 15px;
+            
+                    }
+
+ h2{ 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: whitesmoke;
-    width: 450px;
+    font-size: 25px;
+    margin-bottom:20px;
+    font-weight: inherit;
+   
+}
+h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(203, 195, 240);
+    font-size: 30px;
+    margin-top: 30px; 
+    font-weight: inherit;
+    top : 10px;
+   
+
+}
+p{
     font-size: 18px;
 }
-.container h3 ,h4{
-    font-size: 23px;
-    text-align: center;
-}
-.container p {
-    font-size: 15px;
-    text-align: center;
-}
-.container h2{
-    color:whitesmoke ;
-}
-.container h6{
-    font-size: 23px;
-    text-align: left;
-    padding-top:6px ;
-    padding-bottom: 6px;
-}
-    </style>
 
+.Times{
+    color: whitesmoke;
+    position:absolute;
+            top: 30%;
+            left: 5%; 
+            width: 400px;
+            height: 100px;
+            margin-bottom: 5px;
+            padding-top: 30px;
+            
+}
+.container{
+    margin-top: 8%;
+margin-right: 15%;
+    width: 600px;
+    height: 400px;  
+}
+.content {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .content h2 {
+            justify-content: center;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .content p {
+            text-align: center;
+            font-size: 1rem;
+            color:whitesmoke;
+            margin: 5px 0;
+        }
+       
+      .lists{
+        list-style: none;
+      }
+      .ticket{
+       margin-left:  5%;
+        width: 400px;
+        height: 100px;
+      }
+     .ticket p{
+color:white ;
+     }
+     .price {
+        margin-top: -75px;
+        margin-left: 46%;
+       height: 400px;
+       width: 600px;
+        }
+
+     
+        .lists {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        
+        .price h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+      
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+      
+        .label {
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Price styling */
+        .price-value {
+            margin-top: -10px;
+            color:white;
+            text-align: right;
+        }
+    </style>
+  
 </head>
 <body>
-    <%- include("partials/header.ejs") %>
+    <%- include('partials/header.ejs') %>
+    
+    
     <!-- ----------------------------------------------------- -->
-    <div class="container">
-        <div class="row mt-5 ms-5">
-           <h2> Hours and Admission</h2>
-          <div class="col mt-3 ms-5">
-           <h1>OPENING HOURS</h1>
-           <h5>
-            The museum is open daily except Tuesdays.
-    Last entry 1 hour before closure. Visitors will be asked to vacate the exhibition rooms 30 minutes before closure.
-        <h5> 
-          </div>
-          <div class="col ">
-            <div class="row  border-bottom solid  pb-3 ">
-               <h4> The museum is open today from 9:00 AM to 6:00 PM</h4>
-            </div>
-            <div class="row  border-bottom solid pb-1 ">
-               <h3> 9:00 AM to 6:00 PM</h3>
-              <p>  Monday, Thursday, Saturday and Sunday</p>
-            </div>
-            <div class="row border-bottom solid  ">
-               <h3>9:00 AM to 9:00 PM</h3> 
-               <p> Wednesday and Friday</p>
-            </div>
-            <div class="row border-bottom solid  ">
-               <h3>Closed</h3> 
-                <p>Tuesday</p>
-            </div>
-          </div>
-          
-        </div>
-        <div class="row mt-5 ms-5">
-           <div class="col mt-5 ms-5">
-            <h1>TICKET PRICES</h1> 
-            <h5>
-                Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
-            <h5> 
-           </div>
-           <div class="col mt-5">
-             <div class="row border-bottom solid pb-3 ">
-                <h4>WEEKDAYS</h4>
-             </div>
-             <div class="row   pb-1 ">
-                <h6>Adult</h6>
-                 <h6>Children</h6>
-             
-             </div>
-             <div class="row border-bottom solid  ">
-                <h4>WEEKEND</h4>
-            </div>
-            <div class="row ">
-               <h6>Adult</h6>
-                <h6>Children</h6>
-             </div>
-             
-             
-           </div>
-           
-         </div>
-      </div>
+ <div class="Times">
+    <h2>Hours and Admission</h2>
+    <h3>OPENING HOURS</h3>
+    <P>
+        The museum is open daily except Tuesdays.
+Last entry 1 hour before closure. Visitors will be asked to vacate the exhibition rooms 30 minutes before closure.
+    </P>
+    
+ </div>
+ <div class="container">
+    <li class=" lists ">
+        <ul class="content">
+            
+           <h2>The museum is open today from 9:00 AM to 9:00 PM</h2>
+        </ul>
+        <ul class="content">
+          <h2> 9:00 AM to 6:00 PM</h2>
+           <p>Tuesday,Wednesday, Thursday and Friday</p></ul>
+<ul class="content"> <h2>9:00 AM to 9:00 PM</h2>
+   <p>Sunday and Saturday</p>
+</ul>
+<ul class = "content">
+    <h2> Closed Monday</h2>
+</ul>
+    </li>
+ </div>
 
- 
-   
-    <%- include('partials/footer.ejs') %>
+ <div class="ticket">
+    <h3>TICKET PRICES</h3>
+    <P>
+        Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
+    </P>
+ </div>
+ <div class="price">
+    <ul class="lists">
+        <li>
+            <h2>WEEKDAYS</h2>
+            <div class="row ">
+                <span class="label">Adult</span>
+                <span class="price-value">400</span>
+            </div>
+            <div class="row">
+                <span class="label">Children</span>
+                <span class="price-value">250</span>
+            </div>
+        </li>
+        <li>
+            <h2>WEEKEND</h2>
+            <div class="row">
+                <span class="label">Adult</span>
+                <span class="price-value">400</span>
+            </div>
+            <div class="row">
+                <span class="label">Children</span>
+                <span class="price-value">250</span>
+            </div>
+        </li>
+    </ul>
 </div>
+<%- include('partials/footer.ejs') %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
