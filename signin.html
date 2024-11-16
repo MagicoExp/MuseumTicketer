@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In </title>
+    <style>
+        /* Background image styling */
+        /* Background image styling */
+      body {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full screen height */
+            background-image: url('https://images.pexels.com/photos/5825359/pexels-photo-5825359.jpeg'); /* Background image URL */
+            background-size: cover; /* Make sure image covers entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent image from repeating */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+          width: 300px;
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background (0.6 opacity) */
+            padding: 30px;
+            box-shadow: 7px 7px 7px 7px rgb(37, 1, 1);
+            border-radius: 8px;
+            backdrop-filter: blur(80%); /* Optional: Adds blur effect to the background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-header {
+            text-align: center;
+            font-weight: bold;
+            color: rgb(83, 34, 34);
+            padding: 15px 0;
+            
+           
+        }
+
+        .form-header h2 {
+            margin: 0;
+        }
+
+        .form-body {
+            padding: 20px;
+        }
+
+        .form-body label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-body input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(80%); 
+        
+            border-radius: 5px;
+        }
+
+        .form-body button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4e3614;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-body button:hover {
+            background-color: #1f0202;
+        }
+
+        .form-footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        .form-footer a {
+            color: #160101;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Sign In </h2>
+        </div>
+        <div class="form-body">
+            <form action="#" method="POST">
+                <!-- For Login -->
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="email">Email</label>
+                <input type="email"  placeholder="Enter your Email-ID" required>
+
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <label for="number">Password</label>
+                <input type="number" max="10" placeholder="Enter your Mobile Number" required>
+
+                
+                <button type="submit">Sign-In</button>
+            </form>
+        </div>
+        <div class="form-footer">
+            Have an account? <a href="login&signin.html">Login</a>
+        </div>
+    </div>
+</body>
+</html>
