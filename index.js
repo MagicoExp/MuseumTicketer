@@ -20,9 +20,15 @@ app.use(cookieParser());
 app.get('/',(req,res)=>{
     res.render('home');
 });
+
 app.get('/plan-your-visit',(req,res)=>{
     res.render('plan_visit');
 });
+
+app.get('/about',(req,res)=>{
+    res.render('about');
+});
+
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
