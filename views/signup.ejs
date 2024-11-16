@@ -105,20 +105,20 @@
             <h2>Sign In </h2>
         </div>
         <div class="form-body">
-            <form action="#" method="POST">
+            <form action="/signup" method="POST">
                 <!-- For Login -->
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
                 <label for="email">Email</label>
-                <input type="email"  placeholder="Enter your Email-ID" required>
+                <input type="email" name = 'email'  placeholder="Enter your Email-ID" required>
 
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 
-                <label for="number">Password</label>
-                <input type="number" max="10" placeholder="Enter your Mobile Number" required>
+                <label for="number">Mobile Number</label>
+                <input type="number" name ='phone' placeholder="Enter your Mobile Number" required>
 
                 
                 <button type="submit">Sign-In</button>

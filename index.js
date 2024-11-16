@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path')
 const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 const app = express();
-// const collection = require('./Schema/user')
+const collection = require('./Schema/user')
 // const post = require('./Schema/post');
 // const { userInfo } = require('os');
 // const { log } = require('console');
@@ -42,6 +42,7 @@ app.get('/signup',(req,res)=>{
     
 });
 
+
 app.get('/logout',(req,res)=>{
     res.send("phirse login kro")
 });
@@ -54,6 +55,49 @@ app.get('/events',(req,res)=>{
     res.render('events');
 });
 
+
+app.post('/signup' ,async (req,res) =>{
+    let {username,email,phone,password} = req.body;
+    const user =await collection.findOne({username});
+    if(user)
+        return res.send('user exist');
+
+    bcrypt.genSalt(10,(err,salt)=>{
+        // console.log(salt);            
+        bcrypt.hash(password,salt,async (err,hash)=>{
+            const user = await collection.create({
+                username,
+                email,
+                password:hash,
+                phoneNumber:phone
+            })
+            let token = jwt.sign({email:email},'secret');
+            res.cookie('token',token);
+            res.redirect('login'); 
+            
+        })  
+    })  
+})
+
+app.post('/login',async (req,res)=>{
+    const {username,password,email} = req.body;
+    let user = await collection.findOne({username});
+    if(!user) return res.send('Pls Sign in ');
+
+    bcrypt.compare(password,user.password, (err,result)=>{
+        // console.log(err);
+        
+        if(result){
+            let token = jwt.sign({email:email} ,'secret');
+            res.cookie('token',token);
+            res.redirect('/profile')
+        }else{
+            res.redirect('/login');
+        }
+    })
+
+    
+})
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
