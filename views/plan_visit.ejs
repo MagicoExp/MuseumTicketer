@@ -1,111 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Your Visit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
     <style>
-.col{
-    color: aquamarine;
-    margin-top: 20px;
-}
+        .container , h1, h4, h3, h5, h6 {
+            color: aquamarine; /* Highlight color */
+        }
 
-.container{
-    margin-top: auto;
-}
-.container h5{
-    color: whitesmoke;
-    width: 450px;
-    font-size: 18px;
-}
-.container h3 ,h4{
-    font-size: 23px;
-    text-align: center;
-}
-.container p {
-    font-size: 15px;
-    text-align: center;
-}
-.container h2{
-    color:whitesmoke ;
-}
-.container h6{
-    font-size: 23px;
-    text-align: left;
-    padding-top:6px ;
-    padding-bottom: 6px;
-}
+        .container p {
+            color: whitesmoke;
+            font-size: 18px;
+        }
+
+        .highlight {
+            color: aquamarine; /* Specific class for highlight headings */
+        }
+        .Timings{
+            color: aquamarine;
+        }
+        .extra{
+color: rgb(6, 154, 253);
+        }
+        .btn{
+            margin-top: 50px;
+            text-align: justify;
+            color: white;
+    
+        }
+        
     </style>
-
 </head>
+
 <body>
     <%- include("partials/header.ejs") %>
-    <!-- ----------------------------------------------------- -->
-    <div class="container">
-        <div class="row mt-5 ms-5">
-           <h2> Hours and Admission</h2>
-          <div class="col mt-3 ms-5">
-           <h1>OPENING HOURS</h1>
-           <h5>
-            The museum is open daily except Tuesdays.
-    Last entry 1 hour before closure. Visitors will be asked to vacate the exhibition rooms 30 minutes before closure.
-        <h5> 
-          </div>
-          <div class="col ">
-            <div class="row  border-bottom solid  pb-3 ">
-               <h4> The museum is open today from 9:00 AM to 6:00 PM</h4>
-            </div>
-            <div class="row  border-bottom solid pb-1 ">
-               <h3> 9:00 AM to 6:00 PM</h3>
-              <p>  Monday, Thursday, Saturday and Sunday</p>
-            </div>
-            <div class="row border-bottom solid  ">
-               <h3>9:00 AM to 9:00 PM</h3> 
-               <p> Wednesday and Friday</p>
-            </div>
-            <div class="row border-bottom solid  ">
-               <h3>Closed</h3> 
-                <p>Tuesday</p>
-            </div>
-          </div>
-          
-        </div>
-        <div class="row mt-5 ms-5">
-           <div class="col mt-5 ms-5">
-            <h1>TICKET PRICES</h1> 
-            <h5>
-                Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
-            <h5> 
-           </div>
-           <div class="col mt-5">
-             <div class="row border-bottom solid pb-3 ">
-                <h4>WEEKDAYS</h4>
-             </div>
-             <div class="row   pb-1 ">
-                <h6>Adult</h6>
-                 <h6>Children</h6>
-             
-             </div>
-             <div class="row border-bottom solid  ">
-                <h4>WEEKEND</h4>
-            </div>
-            <div class="row ">
-               <h6>Adult</h6>
-                <h6>Children</h6>
-             </div>
-             
-             
-           </div>
-           
-         </div>
-      </div>
 
- 
-   
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hours and Admission Section -->
+        <div class="row mt-5">
+            <div class=" extra col-12">
+                <h2>Hours and Admission</h2>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <!-- Opening Hours -->
+            <div class="col-md-6 mb-4">
+                <h1 class="fs-1 highlight">Opening Hours</h1> <!-- Highlight class added -->
+                <p class="fs-6">
+                    The museum is open daily except Tuesdays. Last entry 1 hour before closure. Visitors will be asked to vacate the exhibition rooms 30 minutes before closure.
+                </p>
+            </div>
+            <!-- Timings -->
+            <div class="col-md-6">
+                <div class="row">
+                    <h4 class=" Timings fs-4 mb-3 border-bottom pb-2 text-center">The museum is open today from 9:00 AM to 6:00 PM</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h3 class=" Timings fs-4 text-center">9:00 AM to 6:00 PM</h3>
+                        <p class="text-center border-bottom pb-2">Tuesday,Wednesday Thursday, Friday</p>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <h3 class=" Timings fs-4 text-center">9:00 AM to 9:00 PM</h3>
+                        <p class="text-center border-bottom pb-2">Saturday and Sunday</p>
+                    </div>
+                    <div class="col-12">
+                        <h3 class=" Timings fs-4 text-center">Closed</h3>
+                        <p class="text-center">Monday</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Prices Section -->
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <h1 class="fs-1 highlight">Ticket Prices</h1> <!-- Highlight class added -->
+                <p class="fs-6">
+                    Tickets can be used to access both the permanent collections and temporary exhibitions. Time-slot bookings are recommended, including for free-admission visitors.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <!-- Weekdays -->
+                <div class="row mb-3">
+                    <h4 class=" Timings fs-4 border-bottom pb-2 text-center">WEEKDAYS</h4>
+                </div>
+                <div class="row mb-2">
+                    <div class=" Timings col-6"><h6 class="fs-6">Adult</h6></div>
+                    <div class=" Timings col-6"><h6 class="fs-6">Children</h6></div>
+                </div>
+                <!-- Weekend -->
+                <div class="row mb-3">
+                    <h4 class="Timings fs-4 border-bottom pb-2 text-center">WEEKENDS</h4>
+                </div>
+                <div class="row">
+                    <div class="Timings col-6"><h6 class="fs-6">Adult</h6></div>
+                    <div class=" Timings col-6"><h6 class="fs-6">Children</h6></div>
+                </div>
+            </div>
+        </div>
+       
+        <input class="btn  btn-success btn-lg  "  type="Book Now" value="Book Now"></div>
+    
     <%- include('partials/footer.ejs') %>
-</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
