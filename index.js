@@ -34,8 +34,8 @@ app.get('/contact',(req,res)=>{
 });
 
 app.get('/login',(req,res)=>{
-    // res.render('login');
-    res.send("Login Page ayega idhar");
+    res.render('login&signin');
+    // res.send("Login Page ayega idhar");
 });
 app.get('/signup',(req,res)=>{  
     // res.render('signup');
