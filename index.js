@@ -34,12 +34,12 @@ app.get('/contact',(req,res)=>{
 });
 
 app.get('/login',(req,res)=>{
-     res.render('login&siginin.html');
+     res.render('login');
     //res.send("Login Page ayega idhar");
 });
 app.get('/signup',(req,res)=>{  
-    // res.render('signup');
-    res.send("Signup Page ayega idhar");
+    res.render('signup');
+    
 });
 
 app.get('/logout',(req,res)=>{
