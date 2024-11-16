@@ -1,3 +1,3 @@
-to run this code install npm 
-open terminal - npm i 
+to run this code install npm <br>
+open terminal - npm i <br>
 to run nodemon index.js
