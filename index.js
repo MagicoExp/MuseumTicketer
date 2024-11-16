@@ -33,6 +33,23 @@ app.get('/contact',(req,res)=>{
     res.render('contact');
 });
 
+app.get('/login',(req,res)=>{
+    // res.render('login');
+    res.send("Login Page ayega idhar");
+});
+app.get('/signup',(req,res)=>{  
+    // res.render('signup');
+    res.send("Signup Page ayega idhar");
+});
+
+app.get('/logout',(req,res)=>{
+    res.send("phirse login kro")
+});
+
+app.get('/profile',(req,res)=>{
+    res.send("Profile Page ayega idhar");
+});
+
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
