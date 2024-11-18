@@ -126,6 +126,27 @@ app.get('/yourTicket',async (req,res)=>{
     res.render('ticket',{tickets});
 });
 
+// app.get('/yourTicket', async (req, res) => {
+//     const token = req.cookies.token; // Retrieve token from cookies
+//     if (!token) {
+//         return res.redirect('/login'); // Redirect to login if no token
+//     }
+
+//     try {
+//         // Decode token to get the user's email
+//         const decoded = jwt.verify(token, 'secret');
+//         const userEmail = decoded.email;
+
+//         // Find tickets specific to the logged-in user
+//         const tickets = await ticketInfo.find({ email: userEmail });
+//         res.render('ticket', { tickets });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(401).send('Unauthorized access');
+//     }
+// });
+
+
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
 });
