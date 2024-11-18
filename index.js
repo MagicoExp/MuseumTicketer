@@ -88,7 +88,7 @@ app.post('/login',async (req,res)=>{
         // console.log(err);
         
         if(result){
-            let token = jwt.sign({email:email} ,'secret');
+            const token = jwt.sign({email:email} ,'secret');
             res.cookie('token',token);
             res.redirect('/profile')
         }else{
@@ -101,13 +101,22 @@ app.post('/login',async (req,res)=>{
 
 
 
-app.get('/userInputTicket',(req,res)=>{
-    const visitor = '';
-    res.render('userTicketInput',{visitor});
-});
+app.get('/userInputTicket',async (req,res)=>{
+  
+   const user = await ticketInfo.find({});
+   console.log(user.name);
+   
+   
+    
 
+    res.render('userTicketInput',user);
+});
+const arr = [];
 app.post('/submit',async (req,res)=>{
     const {email,name,date,time} = req.body;
+    arr.push(email);
+    // console.log(arr);
+    
     // let info = await ticketInfo.findOne({email});
     const ticket = await ticketInfo.create({
         email,
@@ -120,31 +129,15 @@ app.post('/submit',async (req,res)=>{
 });
 
 app.get('/yourTicket',async (req,res)=>{
-    const tickets = await ticketInfo.find({});  
+
+        let tickets = await ticketInfo.find({});    
+    
+    res.render('ticket',{tickets,arr});
     
 
-    res.render('ticket',{tickets});
 });
 
-// app.get('/yourTicket', async (req, res) => {
-//     const token = req.cookies.token; // Retrieve token from cookies
-//     if (!token) {
-//         return res.redirect('/login'); // Redirect to login if no token
-//     }
 
-//     try {
-//         // Decode token to get the user's email
-//         const decoded = jwt.verify(token, 'secret');
-//         const userEmail = decoded.email;
-
-//         // Find tickets specific to the logged-in user
-//         const tickets = await ticketInfo.find({ email: userEmail });
-//         res.render('ticket', { tickets });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(401).send('Unauthorized access');
-//     }
-// });
 
 
 app.listen(port,()=>{
