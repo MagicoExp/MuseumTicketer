@@ -99,22 +99,31 @@ app.post('/login',async (req,res)=>{
     
 })
 
-app.get('/yourTicket',(req,res)=>{
-    res.render('ticket');
-});
+
 
 app.get('/userInputTicket',(req,res)=>{
-    res.render('userTicketInput');
+    const visitor = '';
+    res.render('userTicketInput',{visitor});
 });
 
 app.post('/submit',async (req,res)=>{
     const {email,name,date,time} = req.body;
-    let info = await ticketInfo.findOne({email});
+    // let info = await ticketInfo.findOne({email});
     const ticket = await ticketInfo.create({
-        email,name,date,time
+        email,
+        name,
+        date,
+        time
     });
     res.redirect('/yourTicket');
 
+});
+
+app.get('/yourTicket',async (req,res)=>{
+    const tickets = await ticketInfo.find({});  
+    
+
+    res.render('ticket',{tickets});
 });
 
 app.listen(port,()=>{
