@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 const app = express();
 const collection = require('./Schema/user')
+const ticketInfo = require('./Schema/ticketInfo');
+
 
 const port = 3001;
 
@@ -103,6 +105,16 @@ app.get('/yourTicket',(req,res)=>{
 
 app.get('/userInputTicket',(req,res)=>{
     res.render('userTicketInput');
+});
+
+app.post('/submit',async (req,res)=>{
+    const {email,name,date,time} = req.body;
+    let info = await ticketInfo.findOne({email});
+    const ticket = await ticketInfo.create({
+        email,name,date,time
+    });
+    res.redirect('/yourTicket');
+
 });
 
 app.listen(port,()=>{
