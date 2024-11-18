@@ -6,9 +6,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 const app = express();
 const collection = require('./Schema/user')
-// const post = require('./Schema/post');
-// const { userInfo } = require('os');
-// const { log } = require('console');
+
 const port = 3001;
 
 app.use(express.urlencoded({extended:true}));
@@ -98,6 +96,14 @@ app.post('/login',async (req,res)=>{
 
     
 })
+
+app.get('/yourTicket',(req,res)=>{
+    res.render('ticket');
+});
+
+app.get('/userInputTicket',(req,res)=>{
+    res.render('userTicketInput');
+});
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
