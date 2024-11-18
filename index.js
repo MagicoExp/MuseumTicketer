@@ -11,112 +11,116 @@ const ticketInfo = require('./Schema/ticketInfo');
 
 const port = 3001;
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname,'public' )));
-app.set('view engine','ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
 app.use(cookieParser());
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/plan-your-visit',(req,res)=>{
+app.get('/events', (req, res) => {
+    res.render('events');
+});
+
+app.get('/plan-your-visit', (req, res) => {
     res.render('plan_visit');
 });
 
-app.get('/about',(req,res)=>{
+app.get('/about', (req, res) => {
     res.render('about');
 });
 
-app.get('/contact',(req,res)=>{
+app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-app.get('/login',(req,res)=>{
-     res.render('login');
+app.get('/login', (req, res) => {
+    res.render('login');
     //res.send("Login Page ayega idhar");
 });
-app.get('/signup',(req,res)=>{  
+app.get('/signup', (req, res) => {
     res.render('signup');
-    
+
 });
 
 
-app.get('/logout',(req,res)=>{
+app.get('/logout', (req, res) => {
     res.send("phirse login kro")
 });
 
-app.get('/profile',(req,res)=>{
+app.get('/profile', (req, res) => {
     res.send("Profile Page ayega idhar");
 });
 
-app.get('/events',(req,res)=>{
+app.get('/events', (req, res) => {
     res.render('events');
 });
 
 
-app.post('/signup' ,async (req,res) =>{
-    let {username,email,phone,password} = req.body;
-    const user =await collection.findOne({username});
-    if(user)
+app.post('/signup', async (req, res) => {
+    let { username, email, phone, password } = req.body;
+    const user = await collection.findOne({ username });
+    if (user)
         return res.send('user exist');
 
-    bcrypt.genSalt(10,(err,salt)=>{
+    bcrypt.genSalt(10, (err, salt) => {
         // console.log(salt);            
-        bcrypt.hash(password,salt,async (err,hash)=>{
+        bcrypt.hash(password, salt, async (err, hash) => {
             const user = await collection.create({
                 username,
                 email,
-                password:hash,
-                phoneNumber:phone
+                password: hash,
+                phoneNumber: phone
             })
-            let token = jwt.sign({email:email},'secret');
-            res.cookie('token',token);
-            res.redirect('login'); 
-            
-        })  
-    })  
+            let token = jwt.sign({ email: email }, 'secret');
+            res.cookie('token', token);
+            res.redirect('login');
+
+        })
+    })
 })
 
-app.post('/login',async (req,res)=>{
-    const {username,password,email} = req.body;
-    let user = await collection.findOne({username});
-    if(!user) return res.send('Pls Sign in ');
+app.post('/login', async (req, res) => {
+    const { username, password, email } = req.body;
+    let user = await collection.findOne({ username });
+    if (!user) return res.send('Pls Sign in ');
 
-    bcrypt.compare(password,user.password, (err,result)=>{
+    bcrypt.compare(password, user.password, (err, result) => {
         // console.log(err);
-        
-        if(result){
-            const token = jwt.sign({email:email} ,'secret');
-            res.cookie('token',token);
+
+        if (result) {
+            const token = jwt.sign({ email: email }, 'secret');
+            res.cookie('token', token);
             res.redirect('/profile')
-        }else{
+        } else {
             res.redirect('/login');
         }
     })
 
-    
+
 })
 
 
 
-app.get('/userInputTicket',async (req,res)=>{
-  
-   const user = await ticketInfo.find({});
-   console.log(user.name);
-   
-   
-    
+app.get('/userInputTicket', async (req, res) => {
 
-    res.render('userTicketInput',user);
+    const user = await ticketInfo.find({});
+    console.log(user.name);
+
+
+
+
+    res.render('userTicketInput', user);
 });
 const arr = [];
-app.post('/submit',async (req,res)=>{
-    const {email,name,date,time} = req.body;
+app.post('/submit', async (req, res) => {
+    const { email, name, date, time } = req.body;
     arr.push(email);
     // console.log(arr);
-    
+
     // let info = await ticketInfo.findOne({email});
     const ticket = await ticketInfo.create({
         email,
@@ -128,18 +132,18 @@ app.post('/submit',async (req,res)=>{
 
 });
 
-app.get('/yourTicket',async (req,res)=>{
+app.get('/yourTicket', async (req, res) => {
 
-        let tickets = await ticketInfo.find({});    
-    
-    res.render('ticket',{tickets,arr});
-    
+    let tickets = await ticketInfo.find({});
+
+    res.render('ticket', { tickets, arr });
+
 
 });
 
 
 
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
