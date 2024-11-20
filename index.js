@@ -18,7 +18,19 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.render('home');
+    const token = req.cookies.token;
+    let isLoggedIn = false;
+
+    if (token) {
+        try {
+            jwt.verify(token, 'secret');
+            isLoggedIn = true;
+        } catch (err) {
+            console.error("Invalid token:", err);
+        }
+    }
+
+    res.render('home', { isLoggedIn });
 });
 
 app.get('/events', (req, res) => {
@@ -48,7 +60,8 @@ app.get('/signup', (req, res) => {
 
 
 app.get('/logout', (req, res) => {
-    res.send("phirse login kro")
+    res.cookie('token' , '');
+    res.redirect('login');
 });
 
 app.get('/profile', (req, res) => {
@@ -86,14 +99,14 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     let user = await collection.findOne({ username });
-    if (!user) return res.send('Please sign up first.');
+    if (!user) return res.send('Sign up krr l*de');
 
     bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
             const token = jwt.sign({ email: user.email }, 'secret'); 
             res.cookie('token', token);
             console.log("Token created and sent to browser:", token);
-            res.redirect('/profile');
+            res.redirect('/');
         } else {
             res.redirect('/login');
         }
@@ -119,7 +132,7 @@ app.get('/userInputTicket', (req, res) => {
         res.render('userTicketInput', { userEmail });
     } catch (err) {
         console.error("Error decoding token:", err);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Fuck u Error");
     }
 });
 
