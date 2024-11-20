@@ -141,7 +141,9 @@ app.get('/yourTicket', async (req, res) => {
 
 });
 
-
+app.get('/availability',(req,res)=>{
+    res.render('check_availability');
+})
 
 
 app.listen(port, () => {
