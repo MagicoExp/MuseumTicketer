@@ -84,62 +84,108 @@ app.post('/signup', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    const { username, password, email } = req.body;
+    const { username, password } = req.body;
     let user = await collection.findOne({ username });
-    if (!user) return res.send('Pls Sign in ');
+    if (!user) return res.send('Please sign up first.');
 
     bcrypt.compare(password, user.password, (err, result) => {
-        // console.log(err);
-
         if (result) {
-            const token = jwt.sign({ email: email }, 'secret');
+            const token = jwt.sign({ email: user.email }, 'secret'); 
             res.cookie('token', token);
-            res.redirect('/profile')
+            console.log("Token created and sent to browser:", token);
+            res.redirect('/profile');
         } else {
             res.redirect('/login');
         }
-    })
-
-
-})
-
-
-
-app.get('/userInputTicket', async (req, res) => {
-
-    const user = await ticketInfo.find({});
-    console.log(user.name);
-
-
-
-
-    res.render('userTicketInput', user);
-});
-const arr = [];
-app.post('/submit', async (req, res) => {
-    const { email, name, date, time } = req.body;
-    arr.push(email);
-    // console.log(arr);
-
-    // let info = await ticketInfo.findOne({email});
-    const ticket = await ticketInfo.create({
-        email,
-        name,
-        date,
-        time
     });
-    res.redirect('/yourTicket');
-
 });
+
+
+
+
+app.get('/userInputTicket', (req, res) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.redirect('/login');
+        }
+
+        const decoded = jwt.verify(token, 'secret');
+        const userEmail = decoded.email;
+
+        console.log("Decoded email:", userEmail);
+
+       
+        res.render('userTicketInput', { userEmail });
+    } catch (err) {
+        console.error("Error decoding token:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
+
+const arr = [];
+
+
+app.post('/submit', async (req, res) => {
+    try {
+        const token = req.cookies.token; 
+        if (!token) {
+            return res.status(401).send("You must be logged in to submit a ticket.");
+        }
+
+        const decoded = jwt.verify(token, 'secret');  
+        const email = decoded.email;
+
+        if (!email) {
+            return res.status(400).send("Email is required.");
+        }
+
+        const { name, date, time } = req.body;
+        const ticket = await ticketInfo.create({
+            email,
+            name,
+            date,
+            time
+        });
+
+        res.redirect('/yourTicket');
+    } catch (err) {
+        console.error("Error submitting ticket:", err);
+        if (err.name === 'JsonWebTokenError') {
+            return res.status(401).send("Invalid or expired token.");
+        }
+
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
+
 
 app.get('/yourTicket', async (req, res) => {
+    try {
+        
+        const token = req.cookies.token;
+        if (!token) {
+            return res.redirect('/login'); // Redirect 
+        }
 
-    let tickets = await ticketInfo.find({});
+        const decoded = jwt.verify(token, 'secret');
+        const email = decoded.email;
 
-    res.render('ticket', { tickets, arr });
+        // Fetch tickets for this email
+        const tickets = await ticketInfo.find({ email });
 
-
+        res.render('ticket', { tickets });
+    } catch (err) {
+        console.error("Error fetching tickets:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
+
+
 
 app.get('/availability',(req,res)=>{
     res.render('check_availability');

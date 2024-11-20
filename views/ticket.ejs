@@ -71,32 +71,27 @@
     </style>
 </head>
 <body>
-    <% tickets.forEach((t,i) => {  %>
-    <div class="ticket">
-        <div class="ticket-header">
-            <h1>Magico</h1>
-            <p>Exploring Art, History, and Culture</p>
-        </div>
-        
-        <div class="ticket-body">
-            
-                
-                
-                <p class="ticket-info"><strong>Date:</strong> <%= t.date %></p>
-                <p class="ticket-info"><strong>Time:</strong> <%= t.time %></p>
-                <p class="ticket-info"><strong>Entry:</strong> Main Hall, Gate 2</p>
-                <p class="ticket-info"><strong>Visitor:</strong> <%= t.name %></p>
-                
-           
-                
+    <% if (tickets.length > 0) { %>
+        <% tickets.forEach((t) => { %>
+            <div class="ticket">
+                <div class="ticket-header">
+                    <h1>Magico</h1>
+                    <p>Exploring Art, History, and Culture</p>
+                </div>
+                <div class="ticket-body">
+                    <p class="ticket-info"><strong>Date:</strong> <%= t.date %></p>
+                    <p class="ticket-info"><strong>Time:</strong> <%= t.time %></p>
+                    <p class="ticket-info"><strong>Visitor:</strong> <%= t.name %></p>
+                </div>
                 <div class="ticket-footer">
-                <p>Thank you for visiting. Enjoy your experience!</p>
+                    <p>Thank you for visiting. Enjoy your experience!</p>
+                </div>
             </div>
-            <div class="qr-code">
-                <img src="https://via.placeholder.com/80x80.png?text=QR+Code" alt="QR Code">
-            </div>
-        </div>
-        <% }); %>
+        <% }) %>
+    <% } else { %>
+        <p>No tickets found for this user.</p>
+    <% } %>
+    
     </div>
     </body>
 </html> 

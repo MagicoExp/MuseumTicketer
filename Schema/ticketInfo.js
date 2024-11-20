@@ -14,12 +14,15 @@ const connect = async() =>{
 connect();
 
 const Schema = new mongoose.Schema({
-    name:String,
-    email:String,
-    date:String,
-    time:String
 
-})
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    date: { type: String, required: true },
+    time: { type: String, required: true }
+}
+
+);
+Schema.index({ email: 1, date: 1, time: 1 }, { unique: true });
 
 const ticketInfo = new mongoose.model('ticketinfo',Schema);
 module.exports = ticketInfo;

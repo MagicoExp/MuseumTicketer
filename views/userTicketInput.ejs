@@ -1,19 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>userTicketInput</title>
+    <title>Submit Ticket</title>
 </head>
 <body>
-    <form action="/submit" method="post">
-        <input type="email" name="email" id="" placeholder="email">
-        <input type="text" name="name" id="" placeholder="Name">
-        <input type="date" name="date" id="" placeholder="date">
-        <input type="time" name="time" id="" placeholder="time">
-        <input type="submit" value="">
+    <form action="/submit" method="POST">
+        
+        <label for="email">Email:</label>
+<input
+    type="email"
+    id="email"
+    name="email"
+    value="<%= userEmail %>" 
+    readonly
+    required
+/>
 
+        <br />
 
+        <label for="name">Name:</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your fucking name"
+            required
+        />
+        <br />
+
+       
+        <label for="date">Date:</label>
+        <input
+            type="date"
+            id="date"
+            name="date"
+            required
+        />
+        <br />
+
+     
+        <label for="time">Time:</label>
+        <input
+            type="time"
+            id="time"
+            name="time"
+            required
+        />
+        <br />
+
+        <button type="submit">Submit Ticket</button>
     </form>
 </body>
 </html>
