@@ -65,11 +65,17 @@ app.get('/plan-your-visit', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.render('about');
+    const isLoggedIn = isLoggedInorNot(req);
+
+    res.render('about',{isLoggedIn});
+    
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact');
+    const isLoggedIn = isLoggedInorNot(req);
+
+    res.render('contact',{isLoggedIn});
+    
 });
 
 app.get('/login', (req, res) => {
