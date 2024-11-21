@@ -17,28 +17,51 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
+function isLoggedInorNot(req){
     const token = req.cookies.token;
-    let isLoggedIn = false;
+    // let isLoggedIn = false;
 
     if (token) {
         try {
             jwt.verify(token, 'secret');
-            isLoggedIn = true;
+            // isLoggedIn = true;
+            return true;
         } catch (err) {
             console.error("Invalid token:", err);
         }
+    } else{
+        return false;
     }
+}
+
+app.get('/', (req, res) => {
+    // const token = req.cookies.token;
+    // let isLoggedIn = false;
+
+    // if (token) {
+    //     try {
+    //         jwt.verify(token, 'secret');
+    //         isLoggedIn = true;
+    //     } catch (err) {
+    //         console.error("Invalid token:", err);
+    //     }
+    // }
+    const isLoggedIn = isLoggedInorNot(req);
 
     res.render('home', { isLoggedIn });
 });
 
 app.get('/events', (req, res) => {
-    res.render('events');
+    const isLoggedIn = isLoggedInorNot(req);
+
+    res.render('events',{isLoggedIn});
 });
 
 app.get('/plan-your-visit', (req, res) => {
-    res.render('plan_visit');
+    const isLoggedIn = isLoggedInorNot(req);
+
+
+    res.render('plan_visit',{isLoggedIn});
 });
 
 app.get('/about', (req, res) => {
