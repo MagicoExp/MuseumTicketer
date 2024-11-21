@@ -7,6 +7,7 @@
     <title>Plan Your Visit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+       
         .container , h1, h4, h3, h5, h6 {
             color: aquamarine; /* Highlight color */
         }
@@ -65,7 +66,7 @@ color: rgb(6, 154, 253);
                         <p class="text-center border-bottom pb-2">Tuesday,Wednesday Thursday, Friday</p>
                     </div>
                     <div class="col-12 mb-2">
-                        <h3 class=" Timings fs-4 text-center">9:00 AM to 9:00 PM</h3>
+                        <h3 class=" Timings fs-4 text-center">9:00 AM to 6:00 PM</h3>
                         <p class="text-center border-bottom pb-2">Saturday and Sunday</p>
                     </div>
                     <div class="col-12">
@@ -104,8 +105,11 @@ color: rgb(6, 154, 253);
             </div>
         </div>
        
-        <a href="/userInputTicket"><button class="btn  btn-success btn-lg  "  onclick="" >Book Now
-        </button></a>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+            <a href="/check.ejs"><button class="btn btn-success btn-lg">Book Now</button></a>
+            </div>
+        </div>
         </div>
         
     <%- include('partials/footer.ejs') %>
