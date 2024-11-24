@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-
+const dotenv  = require('dotenv');
+dotenv.config();
+const MONGO_URL = process.env.mongo_url;
 const connect = async() =>{
    try {
-    await mongoose.connect('mongodb+srv://name:Rohan1818@cluster0.phxe2.mongodb.net/Magico');
-   console.log('DB connected');
+    await mongoose.connect(MONGO_URL);
+   console.log('DB connected of user');
    
     
    } catch (error) {
