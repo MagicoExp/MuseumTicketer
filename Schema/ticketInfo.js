@@ -22,7 +22,7 @@ const Schema = new mongoose.Schema({
 }
 
 );
-Schema.index({ email: 1, date: 1, time: 1 }, { unique: true });
+// Schema.index({ email: 1, date: 1, time: 1 }, { unique: true });
 
 const ticketInfo = new mongoose.model('ticketinfo',Schema);
 module.exports = ticketInfo;

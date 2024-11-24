@@ -71,27 +71,25 @@
     </style>
 </head>
 <body>
-    <% if (tickets.length > 0) { %>
-        <% tickets.forEach((t) => { %>
+    <% if(tickets) {%>
             <div class="ticket">
                 <div class="ticket-header">
                     <h1>Magico</h1>
                     <p>Exploring Art, History, and Culture</p>
                 </div>
                 <div class="ticket-body">
-                    <p class="ticket-info"><strong>Date:</strong> <%= t.date %></p>
-                    <p class="ticket-info"><strong>Time:</strong> <%= t.time %></p>
-                    <p class="ticket-info"><strong>Visitor:</strong> <%= t.name %></p>
+                    <p class="ticket-info"><strong>Date:</strong> <%= tickets.date %></p>
+                    <p class="ticket-info"><strong>Time:</strong> <%= tickets.time %></p>
+                    <p class="ticket-info"><strong>Visitor:</strong> <%= tickets.name %></p>
                 </div>
                 <div class="ticket-footer">
                     <p>Thank you for visiting. Enjoy your experience!</p>
                 </div>
             </div>
-        <% }) %>
-    <% } else { %>
+      <% }else{ %>
         <p>No tickets found for this user.</p>
+   
     <% } %>
-    
     </div>
     </body>
 </html> 

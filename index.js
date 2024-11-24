@@ -218,7 +218,7 @@ app.get('/yourTicket', async (req, res) => {
         const email = decoded.email;
 
         // Fetch tickets for this email
-        const tickets = await ticketInfo.find({ email });
+        const tickets = await ticketInfo.findOne({ email }).sort({date:-1});
 
         res.render('ticket', { tickets });
     } catch (err) {
