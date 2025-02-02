@@ -16,8 +16,8 @@
             background: linear-gradient(to bottom, #e0c097, #d3b48f);
         }
         .ticket {
-            width: 450px;
-            height: 220px;
+            width: 500px;
+            height: 300px;
             border: 3px solid #8a6d3b;
             border-radius: 5px;
             background-color: #fff8e1;
@@ -33,14 +33,16 @@
             font-family: 'Times New Roman', serif;
             color: #6b4f2a;
             border-bottom: 2px solid #8a6d3b;
-            padding-bottom: 10px;
+            /* padding-bottom: 10px; */
         }
         .ticket-header h1 {
             margin: 0;
             font-size: 24px;
         }
-        .ticket-header p {
-            margin: 5px 0 0;
+        .unique_id {
+            /* margin: 5px 0 0; */
+            margin-left: 60%;
+            margin-top: 0%;
             font-size: 16px;
             font-style: italic;
         }
@@ -68,12 +70,17 @@
             border: 2px solid #8a6d3b;
             border-radius: 5px;
         }
+        /* .unique_id{
+            margin: px;
+
+        } */
     </style>
 </head>
 <body>
     <% if(tickets) {%>
-            <div class="ticket">
-                <div class="ticket-header">
+        <div class="ticket">
+            <div class="ticket-header">
+                    <p class="unique_id"> <%=tickets._id  %></p>
                     <h1>Magico</h1>
                     <p>Exploring Art, History, and Culture</p>
                 </div>
@@ -81,9 +88,13 @@
                     <p class="ticket-info"><strong>Date:</strong> <%= tickets.date %></p>
                     <p class="ticket-info"><strong>Time:</strong> <%= tickets.time %></p>
                     <p class="ticket-info"><strong>Visitor:</strong> <%= tickets.name %></p>
+
                 </div>
+               
                 <div class="ticket-footer">
                     <p>Thank you for visiting. Enjoy your experience!</p>
+                    <p class=""><strong>Created On:</strong> <%= new Date(tickets.createdAt).toLocaleString() %></p>
+
                 </div>
             </div>
       <% }else{ %>

@@ -8,6 +8,9 @@ const cookieParser = require('cookie-parser')
 const app = express();
 const collection = require('./Schema/user')
 const ticketInfo = require('./Schema/ticketInfo');
+const nodemailer = require('nodemailer');
+const pdfkit = require('pdfkit');
+const fs = require('fs');
 
 dotenv.config();
 const port = 3001;
@@ -168,41 +171,77 @@ app.get('/userInputTicket', (req, res) => {
 
 
 
-const arr = [];
-
-
-app.post('/submit', async (req, res) => {
-    try {
-        const token = req.cookies.token; 
-        if (!token) {
-            return res.status(401).send("You must be logged in to submit a ticket.");
-        }
-
-        const decoded = jwt.verify(token, 'secret');  
-        const email = decoded.email;
-
-        if (!email) {
-            return res.status(400).send("Email is required.");
-        }
-
-        const { name, date, time } = req.body;
-        const ticket = await ticketInfo.create({
-            email,
-            name,
-            date,
-            time
-        });
-
-        res.redirect('/yourTicket');
-    } catch (err) {
-        console.error("Error submitting ticket:", err);
-        if (err.name === 'JsonWebTokenError') {
-            return res.status(401).send("Invalid or expired token.");
-        }
-
-        res.status(500).send("Internal Server Error");
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'vishvaraj.dgkgr22@sinhgad.edu',        // Replace with your Gmail
+        pass: '---'             // Use App Password if 2FA is enabled
     }
 });
+
+
+
+
+
+    app.post('/submit', async (req, res) => {
+        try {
+            const token = req.cookies.token; 
+            if (!token) {
+                return res.status(401).send("You must be logged in to submit a ticket.");
+            }
+    
+            const decoded = jwt.verify(token, 'secret');  
+            const email = decoded.email;
+    
+            if (!email) {
+                return res.status(400).send("Email is required.");
+            }
+    
+            const { name, date, time } = req.body;
+    
+            // Create Ticket
+            const ticket = await ticketInfo.create({
+                email,
+                name,
+                date,
+                time
+            });
+    
+            // Send Ticket via Email
+            const mailOptions = {
+                from: 'vishvaraj.dgkgr22@sinhgad.edu',
+                to: email,
+                subject: 'Ticket Lelo Ticket',
+                html: `
+                    <h2>🎫 Your Ticket Details</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Date:</strong> ${date}</p>
+                    <p><strong>Time:</strong> ${time}</p>
+                    <p><strong>Ticket ID:</strong> ${ticket._id}</p>
+                    <br>
+                    <p>Nakki ya...</p>
+                `
+            };
+    
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error("Error sending email:", error);
+                } else {
+                    console.log("Email sent:", info.response);
+                }
+            });
+    
+            res.redirect('/yourTicket'); // Redirect to the ticket page
+        } catch (err) {
+            console.error("Error submitting ticket:", err);
+            if (err.name === 'JsonWebTokenError') {
+                return res.status(401).send("Invalid or expired token.");
+            }
+            res.status(500).send("Internal Server Error");
+        }
+    });
 
 
 
@@ -219,7 +258,7 @@ app.get('/yourTicket', async (req, res) => {
         const email = decoded.email;
 
         // Fetch tickets for this email
-        const tickets = await ticketInfo.findOne({ email }).sort({date:-1});
+        const tickets = await ticketInfo.findOne({ email }).sort({createdAt:-1});
 
         res.render('ticket', { tickets });
     } catch (err) {

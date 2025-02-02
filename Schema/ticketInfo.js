@@ -21,7 +21,7 @@ const Schema = new mongoose.Schema({
     email: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true }
-}
+},{timestamps:true}
 
 );
 // Schema.index({ email: 1, date: 1, time: 1 }, { unique: true });
