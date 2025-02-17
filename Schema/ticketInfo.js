@@ -20,7 +20,10 @@ const Schema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     date: { type: String, required: true },
-    time: { type: String, required: true }
+    time: { type: String, required: true },
+    price: { type: Number, default:200 },
+    numberOfTickets: { type: Number, default:2 },
+    
 },{timestamps:true}
 
 );

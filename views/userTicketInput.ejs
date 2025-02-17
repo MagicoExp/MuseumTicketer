@@ -86,4 +86,15 @@
 </div>
 
 </body>
+<script>
+    const d = document.getElementById('date');
+    console.log(new Date().toISOString());
+    
+    d.oninput = (e) => {
+        if(!(d.value > new Date().toISOString().split('T')[0])) {
+            console.log('Value is less than', new Date().toISOString())
+            d.value = ''
+        }
+    }
+    </script>
 </html>

@@ -11,6 +11,7 @@ const ticketInfo = require('./Schema/ticketInfo');
 const nodemailer = require('nodemailer');
 const pdfkit = require('pdfkit');
 const fs = require('fs');
+const QRCode = require('qrcode');
 
 dotenv.config();
 const port = 3001;
@@ -177,7 +178,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: 'vishvaraj.dgkgr22@sinhgad.edu',        // Replace with your Gmail
-        pass: '---'             // Use App Password if 2FA is enabled
+        pass: 'Sinhgad$26'             // Use App Password if 2FA is enabled
     }
 });
 
@@ -208,21 +209,39 @@ const transporter = nodemailer.createTransport({
                 date,
                 time
             });
+        //     const qrData = `https://Magico.com/downloadTicket/${ticket._id}`;  // Or just ticketId
+        // const qrCodeDataURL = await QRCode.toDataURL(qrData);
     
             // Send Ticket via Email
             const mailOptions = {
                 from: 'vishvaraj.dgkgr22@sinhgad.edu',
                 to: email,
-                subject: 'Ticket Lelo Ticket',
+                subject: '🎟️ Your Museum Ticket is Confirmed!',
                 html: `
-                    <h2>🎫 Your Ticket Details</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Date:</strong> ${date}</p>
-                    <p><strong>Time:</strong> ${time}</p>
-                    <p><strong>Ticket ID:</strong> ${ticket._id}</p>
-                    <br>
-                    <p>Nakki ya...</p>
-                `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+            <h2 style="color: #333; text-align: center;">🎉 Thank You for Your Booking!</h2>
+            <p>Hi <strong>${ticket.name}</strong>,</p>
+            <p>We're excited to confirm your ticket booking. Below are your ticket details:</p>
+            
+            <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                <p><strong>🎫 Ticket ID:</strong> ${ticket._id}</p>
+                <p><strong>📅 Date:</strong> ${ticket.date}</p>
+                <p><strong>⏰ Time:</strong> ${ticket.time}</p>
+             <p><strong>🎟️ Number of Tickets:</strong> ${ticket.numberOfTickets}</p>
+                 <p><strong>💰 Total Price:</strong> $${ticket.price}</p>
+            </div>
+
+            
+
+            <p style="color: #555;">Please keep this email for your records. Show the QR code at the entrance for a quick check-in.</p>
+
+            <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+
+            <p style="font-size: 12px; color: #999;">If you have any questions, feel free to reply to this email or contact us at support@museum.com.</p>
+            <p style="font-size: 12px; color: #999; text-align: center;">Thank you for choosing our museum. We look forward to seeing you!</p>
+        </div>
+    `,
+                
             };
     
             transporter.sendMail(mailOptions, (error, info) => {
@@ -242,10 +261,72 @@ const transporter = nodemailer.createTransport({
             res.status(500).send("Internal Server Error");
         }
     });
+    
+    app.get('/downloadTicket/:ticketId', async (req, res) => {
+        const ticketId = req.params.ticketId;
+        console.log("Fetching ticket with ID:", ticketId); // Debugging
+    
+        try {
+            const ticket = await ticketInfo.findById(ticketId);
+            if (!ticket) {
+                console.log("Ticket not found"); // Debugging
+                return res.status(404).send('Ticket not found');
+            }
+            console.log("Ticket data:", ticket); // Debugging
+            const qrData = `https://yourwebsite.com/downloadTicket/${ticketId}`;  // Link to download the ticket
+            const qrCode = await QRCode.toDataURL(qrData);
+            // Create the PDF
+            const doc = new pdfkit();
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', `attachment; filename=Ticket_${ticketId}.pdf`);
+    
+            // Pipe the PDF directly to the response
+            doc.pipe(res);
+    
+            // Add content to the PDF
+           // Add background color
+doc.rect(0, 0, doc.page.width, doc.page.height).fill('#c78c8c'); // Light blue background
+
+// Add a border around the ticket
+doc.strokeColor('#333333').lineWidth(5).rect(50, 40, 450, 350).fill('#ffffff').stroke();
+
+// Header
+doc.fontSize(20).fillColor('#000000').text('Magico', { align: 'center' });
+doc.moveDown(0.5);
+
+// Ticket ID
+doc.fontSize(16).fillColor('#111110').text(`Ticket ID: ${ticket._id}`, { align: 'center' });
+doc.moveDown(0.5);
+
+// Ticket Details
+doc.fontSize(14).fillColor('#2c3e50');
+doc.text(`Name: ${ticket.name}`);
+doc.text(`Date: ${ticket.date}`);
+doc.text(`Time: ${ticket.time}`);
+doc.text(`Number of Tickets: ${ticket.numberOfTickets}`);
+doc.text(`Price: ${ticket.price}`);
+doc.moveDown(1);
+
+// Add a decorative line
 
 
+// Footer
+
+doc.image(qrCode, {
+    fit: [150, 150],
+    align: 'center',
+    valign: 'center'
+});
+doc.fontSize(12).fillColor('#2c3e50').text('Thank you for visiting! Enjoy your experience! ');
 
 
+// Finalize the PDF
+doc.end(); // End PDF generation
+        } catch (err) {
+            console.error('Error generating ticket:', err);
+            res.status(500).send('Internal Server Error');
+        }
+    });
 app.get('/yourTicket', async (req, res) => {
     try {
         
