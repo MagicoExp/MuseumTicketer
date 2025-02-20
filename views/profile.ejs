@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background: #000;
+            margin: 0;
+            padding: 50px;
+            color: white;
+        }
+        .hello-msg {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .profile-container {
+            width: 100%;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            color: white;
+            background: #444;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+        .btn:hover {
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="hello-msg">Hello, <%= user.username %></div>
+        <div class="profile-container">
+           
+            <h2><%= user.name %></h2>
+            <p>Email: <%= user.email %></p>
+            <p>Tickets Purchased: <%= user.ticketsPurchased || 0 %></p>
+            <a href="/edit-profile" class="btn">Edit Profile</a>
+        </div>
+    
+    
+</body>
+</html>

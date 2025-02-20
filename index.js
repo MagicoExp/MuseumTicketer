@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
 app.get('/events', (req, res) => {
     const isLoggedIn = isLoggedInorNot(req);
 
-    res.render('events',{isLoggedIn});
+    res.render('plan_visit',{isLoggedIn});
 });
 
 app.get('/plan-your-visit', (req, res) => {
@@ -98,9 +98,36 @@ app.get('/logout', (req, res) => {
     res.redirect('login');
 });
 
-app.get('/profile', (req, res) => {
-    res.send("Profile Page ayega idhar");
+app.get('/profile', async (req, res) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.redirect('/login'); // Redirect to login if no token is present
+    }
+
+    try {
+        // Decode the token
+        const decoded = jwt.verify(token, 'secret');
+        const email = decoded.email; // Get email from token
+
+        // Find user based on email
+        const user = await collection.findOne({ email });
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        console.log("User found:", user); // Log the user data for debugging
+
+        // Render the profile page with user data
+        res.render('profile', { user });
+
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).send("Internal Server Error");
+    }
 });
+
 
 app.get('/events', (req, res) => {
     res.render('events');
@@ -133,7 +160,7 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     let user = await collection.findOne({ username });
-    if (!user) return res.send('Sign up krr l*de');
+    if (!user) return res.render('signupError');
 
     bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
@@ -178,7 +205,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: 'vishvaraj.dgkgr22@sinhgad.edu',        // Replace with your Gmail
-        pass: 'password chaiye kya bsdk'             // Use App Password if 2FA is enabled
+        pass: 'Sinhgad$26'             // Use App Password if 2FA is enabled
     }
 });
 
