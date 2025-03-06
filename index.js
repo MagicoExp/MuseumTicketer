@@ -205,7 +205,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: 'vishvaraj.dgkgr22@sinhgad.edu',        // Replace with your Gmail
-        pass: 'Sinhgad$26'             // Use App Password if 2FA is enabled
+        pass: '****'             // Use App Password if 2FA is enabled
     }
 });
 
